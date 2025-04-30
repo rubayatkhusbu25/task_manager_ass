@@ -8,11 +8,12 @@ import 'package:task_manager/ui/screens/update_profile_screen.dart';
 
 class TMAppBar extends StatelessWidget  implements PreferredSizeWidget{
   const TMAppBar({
-    super.key, this.fromProfileScreen,
+    super.key, this.fromProfileScreen,this.onUpdate,
 
   });
 
   final bool? fromProfileScreen;
+   final VoidCallback? onUpdate;
 
 
   @override
@@ -65,7 +66,13 @@ class TMAppBar extends StatelessWidget  implements PreferredSizeWidget{
   }
 
   void _onTapProfileSection(BuildContext context){
-    Navigator.push(context, MaterialPageRoute(builder: (context)=>UpdateProfileScreen()));
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>UpdateProfileScreen(
+        onUpdate: (){
+        onUpdate!();
+
+
+    }
+    )));
   }
 
 
