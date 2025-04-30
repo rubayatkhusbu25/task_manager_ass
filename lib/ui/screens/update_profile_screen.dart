@@ -15,7 +15,8 @@ import 'package:task_manager/ui/widgets/snackbar_message.dart';
 import 'package:task_manager/ui/widgets/tm_appBar.dart';
 
 class UpdateProfileScreen extends StatefulWidget {
-  const UpdateProfileScreen({super.key});
+  UpdateProfileScreen({super.key, this.onUpdate});
+  final VoidCallback? onUpdate;
 
   @override
   State<UpdateProfileScreen> createState() => _UpdateProfileScreenState();
@@ -268,6 +269,8 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
 
       await AuthController.saveUserInformation(token, userModel );
       await AuthController.getUserInformation();
+
+      widget.onUpdate!();
       if(AuthController.token != null){
         _logger.i('State update Successfully ${AuthController.userModel}');
 
